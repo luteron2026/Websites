@@ -116,6 +116,93 @@
           "path": "sites/vibe-marketplace/option-3"
         }
       ]
+    },
+    {
+      "name": "Family Promise of Santa Clarita Valley",
+      "slug": "family-promise-scv",
+      "code": "sgmu",
+      "intro": "Three directions for a new Family Promise SCV website. Open each one, click around, and try it on your phone too.",
+      "options": [
+        {
+          "id": "qcfsb7",
+          "title": "Option 1",
+          "subtitle": "Open door",
+          "notes": "Plum and gold from the logo, with two clear paths for families who need help and neighbors who want to give it. Full set of pages.",
+          "path": "sites/family-promise-scv/option-1"
+        },
+        {
+          "id": "nds3mk",
+          "title": "Option 2",
+          "subtitle": "Home",
+          "notes": "Warm and quiet, led by photographs of Williams Hope House with a room-by-room walkthrough. Full set of pages.",
+          "path": "sites/family-promise-scv/option-2"
+        },
+        {
+          "id": "njr5xh",
+          "title": "Option 3",
+          "subtitle": "Community action",
+          "notes": "Bold blue and gold built around volunteering and giving, with impact numbers as real text. Full set of pages.",
+          "path": "sites/family-promise-scv/option-3"
+        }
+      ]
+    },
+    {
+      "name": "Beacon Hill Classical Academy",
+      "slug": "beacon-hill",
+      "code": "d9q2",
+      "intro": "Three directions for a new Beacon Hill website. Open each one, click around, and try it on your phone too.",
+      "options": [
+        {
+          "id": "vrjdgh",
+          "title": "Option 1",
+          "subtitle": "Formal academy",
+          "notes": "Crest navy and orange with classic serif type, the three stages of the Trivium and tours for both campuses. Full set of pages.",
+          "path": "sites/beacon-hill/option-1"
+        },
+        {
+          "id": "xujfrg",
+          "title": "Option 2",
+          "subtitle": "Student gallery",
+          "notes": "White gallery layout where student artwork provides the color. Full set of pages.",
+          "path": "sites/beacon-hill/option-2"
+        },
+        {
+          "id": "bucvra",
+          "title": "Option 3",
+          "subtitle": "Family planner",
+          "notes": "Parents choose a grade and program to see the school week, hours, campus and published tuition. Full set of pages.",
+          "path": "sites/beacon-hill/option-3"
+        }
+      ]
+    },
+    {
+      "name": "Carousel Ranch",
+      "slug": "carousel-ranch",
+      "code": "e8nq",
+      "intro": "Three directions for a new Carousel Ranch website. Open each one, click around, and try it on your phone too.",
+      "options": [
+        {
+          "id": "3kazrr",
+          "title": "Option 1",
+          "subtitle": "Carousel canopy",
+          "notes": "Teal and barn red with scalloped edges and round photo frames, covering both programs and the horses. Full set of pages.",
+          "path": "sites/carousel-ranch/option-1"
+        },
+        {
+          "id": "s8dpxe",
+          "title": "Option 2",
+          "subtitle": "Ranch journal",
+          "notes": "Large photographs and serif type that tell the story like a magazine feature. Full set of pages.",
+          "path": "sites/carousel-ranch/option-2"
+        },
+        {
+          "id": "5mh4vf",
+          "title": "Option 3",
+          "subtitle": "Clear and open",
+          "notes": "High contrast, large buttons, a text-size control and simple choices by visitor type. Full set of pages.",
+          "path": "sites/carousel-ranch/option-3"
+        }
+      ]
     }
   ]
 }
