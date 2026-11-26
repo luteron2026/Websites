@@ -64,9 +64,16 @@
     })
     if (c.options.length < 2) tabs.style.visibility = 'hidden'
 
+    // While a website is open, the browser tab wears that website's icon. The options page has none.
+    var icon = document.createElement('link')
+    icon.rel = 'icon'
+    icon.href = 'data:,'
+    document.head.appendChild(icon)
+
     function show() {
       var n = parseInt(location.hash.slice(1), 10)
       var o = c.options[n - 1]
+      icon.href = o ? '../v/' + o.id + '/favicon.png?v=' + (window.SHOWCASE_VERSION || '') : 'data:,'
       if (!o) {
         viewer.hidden = true
         document.body.classList.remove('locked')
