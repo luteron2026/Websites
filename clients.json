@@ -29,6 +29,93 @@
           "path": "sites/gilsulate/option-3"
         }
       ]
+    },
+    {
+      "name": "Victory Ranch",
+      "slug": "victory-ranch",
+      "code": "a6uf",
+      "intro": "Three directions for a new Victory Ranch website. Open each one, click around, and try it on your phone too.",
+      "options": [
+        {
+          "id": "9tvhua",
+          "title": "Option 1",
+          "subtitle": "Printed camp program",
+          "notes": "Warm paper, barn red and a clear list of every camp with dates and prices. The next camp sits right under the headline. Full set of pages.",
+          "path": "sites/victory-ranch/option-1"
+        },
+        {
+          "id": "4x476g",
+          "title": "Option 2",
+          "subtitle": "Out in the canyon",
+          "notes": "Dark, photo-led design with tall type, a sliding camp reel and a day-at-camp story. Full set of pages.",
+          "path": "sites/victory-ranch/option-2"
+        },
+        {
+          "id": "95aqgm",
+          "title": "Option 3",
+          "subtitle": "Camp planner",
+          "notes": "Bright and practical. Parents pick a grade and see which camps fit, with upcoming dates beside it. Full set of pages.",
+          "path": "sites/victory-ranch/option-3"
+        }
+      ]
+    },
+    {
+      "name": "Coast 2 Coast Camps",
+      "slug": "coast-2-coast-camps",
+      "code": "vx3g",
+      "intro": "Three directions for a new C2C Camps website. Open each one, click around, and try it on your phone too.",
+      "options": [
+        {
+          "id": "4yudhp",
+          "title": "Option 1",
+          "subtitle": "Sunburst",
+          "notes": "Logo yellow and navy with round, playful shapes, awards up front and a location finder for both states. Full set of pages.",
+          "path": "sites/coast-2-coast/option-1"
+        },
+        {
+          "id": "qwwg7z",
+          "title": "Option 2",
+          "subtitle": "Parent desk",
+          "notes": "Calm and task-first. Registration, prices, pickup schools and campership help are one tap from the top. Full set of pages.",
+          "path": "sites/coast-2-coast/option-2"
+        },
+        {
+          "id": "sfvyw6",
+          "title": "Option 3",
+          "subtitle": "Camp poster",
+          "notes": "Bold blue poster with big type and a photo wall, splitting clearly into after school and summer. Full set of pages.",
+          "path": "sites/coast-2-coast/option-3"
+        }
+      ]
+    },
+    {
+      "name": "Vibe Marketplace",
+      "slug": "vibe-marketplace",
+      "code": "zg8z",
+      "intro": "Three directions for a new Vibe website. Open each one, click around, and try it on your phone too.",
+      "options": [
+        {
+          "id": "9s8rdt",
+          "title": "Option 1",
+          "subtitle": "Editorial",
+          "notes": "Ivory and oxblood, laid out like a wedding magazine, with room for the photography. Full set of pages.",
+          "path": "sites/vibe-marketplace/option-1"
+        },
+        {
+          "id": "mwwk2d",
+          "title": "Option 2",
+          "subtitle": "Darkroom",
+          "notes": "Deep plum with full-screen photographs, a side menu and fine capital lettering. Full set of pages.",
+          "path": "sites/vibe-marketplace/option-2"
+        },
+        {
+          "id": "b5hrnn",
+          "title": "Option 3",
+          "subtitle": "Flower market",
+          "notes": "Inspired by the Flower Cart: striped awning, sage and blush, shop-style services and a cart package picker. Full set of pages.",
+          "path": "sites/vibe-marketplace/option-3"
+        }
+      ]
     }
   ]
 }

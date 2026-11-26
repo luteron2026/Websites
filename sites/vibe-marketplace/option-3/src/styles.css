@@ -1,0 +1,72 @@
+/* Option 3: market stall. Taken from the cart: striped awning, cream, sage, peony pink. */
+:root { --bg: #fbf7ef; --surface: #fff; --ink: #1f241c; --muted: #61685a; --accent: #1f241c; --on-accent: #fbf7ef; --sage: #a8b59a; --pink: #f3c9c4; --rose: #a63d52; --line: #e0dac9; --line-strong: #8b917f; --display: 'Fraunces', serif; --body: 'Karla', sans-serif; --radius: 4px; --price: var(--rose); }
+h1, h2, h3 { font-weight: 500; font-variation-settings: 'SOFT' 100; letter-spacing: -.015em; }
+h1 { font-size: clamp(3rem, 6.6vw, 5.6rem); line-height: 1; }
+h1 em { color: var(--rose); }
+h2 { font-size: clamp(2.1rem, 4vw, 3.2rem); }
+.btn { border-radius: 99px; }
+.awning { height: 2.6rem; background: repeating-linear-gradient(90deg, var(--ink) 0 2.6rem, #fff 2.6rem 5.2rem); -webkit-mask: radial-gradient(1.3rem at 50% calc(100% - 1.3rem), #000 98%, #0000) 0 0 / 2.6rem 100%, linear-gradient(#000 calc(100% - 1.3rem), #0000 0); mask: radial-gradient(1.3rem at 50% calc(100% - 1.3rem), #000 98%, #0000) 0 0 / 2.6rem 100%, linear-gradient(#000 calc(100% - 1.3rem), #0000 0); }
+.awning.flip { transform: scaleY(-1); margin-top: 4rem; }
+.head { display: flex; align-items: center; gap: 1.5rem; width: min(1180px, 100% - 2.5rem); margin-inline: auto; padding-block: .8rem; border-bottom: 1.5px solid var(--ink); }
+.brand { font-family: var(--display); font-size: 2.4rem; text-decoration: none; line-height: 1; }
+.brand i { font-size: .55em; color: var(--rose); }
+.head nav { display: flex; gap: 1.4rem; margin-left: auto; font-weight: 500; }
+.head nav a { text-decoration: none; padding: .25rem 0; border-bottom: 3px solid transparent; }
+.head nav a:hover, .head nav a[aria-current] { border-color: var(--rose); }
+.head .menu-btn { display: none; border-radius: 99px; }
+@media (max-width: 960px) { .head nav { display: none; } .head > .btn { margin-left: auto; } .head .menu-btn { display: block; } }
+.menu { background: var(--sage); color: var(--ink); }
+
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.frames { display: grid; grid-template-columns: 1.25fr 1fr; gap: 1rem; align-items: end; }
+.frames img { width: 100%; object-fit: cover; }
+.frames img:first-child { aspect-ratio: 3 / 4.4; border-radius: 999px 999px 8px 8px; border: 1.5px solid var(--ink); padding: .5rem; background: #fff; }
+.frames img:last-child { aspect-ratio: 3 / 4; border-radius: 8px; }
+@media (max-width: 840px) { .hero { grid-template-columns: 1fr; } }
+.shop { list-style: none; padding: 0; display: grid; gap: 2.5rem 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); }
+.shop a { display: grid; grid-template-columns: 1fr auto; gap: .25rem 1rem; text-decoration: none; }
+.shop img { grid-column: 1 / -1; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 999px 999px 6px 6px; transition: border-radius .5s; }
+.shop a:hover img { border-radius: 6px; }
+.shop h3 { margin: .6rem 0 0; font-size: 1.45rem; }
+.shop p { margin: .75rem 0 0; color: var(--rose); font-weight: 700; align-self: start; }
+
+.picker { background: var(--sage); padding-block: clamp(3rem, 6vw, 5rem); }
+.picker > div { display: grid; grid-template-columns: .8fr 1fr; gap: 3rem; align-items: start; }
+.picker > div > img { width: 100%; border-radius: 8px; aspect-ratio: 2 / 3; object-fit: cover; }
+.picker .filters button { border: 1.5px solid var(--ink); border-radius: 99px; }
+.ticket { background: var(--bg); padding: 1.75rem; border: 1.5px dashed var(--ink); border-radius: 8px; }
+.ticket h3 { font-size: 2rem; margin-bottom: .1em; }
+.ticket .price { font-size: 1.5rem; }
+@media (max-width: 780px) { .picker > div { grid-template-columns: 1fr; } .picker > div > img { display: none; } }
+.quotes { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.quotes figure { margin: 0; background: var(--pink); padding: 1.5rem; border-radius: 6px; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(-1deg); }
+.quotes figure:nth-child(even) { transform: rotate(1.2deg); background: #fff; border: 1.5px solid var(--line); }
+.quotes p { font-family: var(--display); font-size: 1.15rem; line-height: 1.45; }
+.quotes figcaption { font-weight: 700; }
+.ribbon { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; }
+.ribbon img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; }
+@media (max-width: 700px) { .ribbon { grid-template-columns: repeat(3, 1fr); } .ribbon img:nth-child(n+4) { display: none; } }
+
+.cover { width: min(1180px, 100% - 2.5rem); margin: 2rem auto 0; display: grid; grid-template-columns: 1fr 1fr; background: var(--pink); border-radius: 12px; overflow: hidden; }
+.cover > img { order: 2; height: clamp(20rem, 46vw, 34rem); }
+.cover-text { width: auto; margin: 0; align-self: center; padding: 2rem clamp(1.25rem, 4vw, 3.5rem); }
+.cover h1 { font-size: clamp(2.6rem, 5.4vw, 4.6rem); margin-bottom: .25em; }
+.cover p { font-size: 1.12rem; margin: 0; }
+@media (max-width: 760px) { .cover { grid-template-columns: 1fr; } .cover > img { order: -1; height: 18rem; } }
+.service > img { aspect-ratio: 4 / 5; object-fit: cover; border-radius: 999px 999px 8px 8px; }
+.packages { list-style: none; padding: 0; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); margin-bottom: 2rem; }
+.packages > li { background: #fff; border: 1.5px solid var(--ink); border-radius: 10px; padding: 1.75rem; display: flex; flex-direction: column; box-shadow: 6px 6px 0 var(--sage); }
+.packages h3 { font-size: 1.8rem; margin-bottom: .2em; }
+.packages .price { font-size: 1.6rem; }
+.packages ul { padding-left: 1.1rem; flex: 1; margin: 0 0 1.5rem; }
+.rows { border-top: 1.5px solid var(--ink); }
+.strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+.strip img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; }
+@media (max-width: 700px) { .strip { grid-template-columns: 1fr 1fr; } }
+.card { border: 1.5px solid var(--line); border-radius: 10px; }
+.filters button { border-radius: 99px; }
+.gallery img { border-radius: 6px; }
+.foot { background: var(--ink); color: var(--bg); padding-block: 2.5rem 1.5rem; }
+.foot > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; }
+.foot .brand { margin-bottom: .5rem; } .foot .brand i { color: var(--pink); }
+.fine { font-size: .82rem; color: #b9bfae; margin-bottom: 0; }
