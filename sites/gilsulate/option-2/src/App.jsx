@@ -2,51 +2,51 @@ import { useEffect, useRef, useState } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Home from './Home.jsx'
 import * as P from './pages.jsx'
-import { SECTIONS, locate } from './manual.js'
+import { NAV, inGroup } from './nav.js'
 import { CO, media } from './data.js'
 
-function Binder() {
+const QUICK = [['Product', '/product'], ['Systems', '/systems'], ['Projects', '/tech/case-studies'], ['Contact', '/contact']]
+
+function Masthead() {
   const { pathname } = useLocation()
-  const [open, setOpen] = useState(false)
-  const here = locate(pathname)
-  useEffect(() => setOpen(false), [pathname])
+  const dialog = useRef(null)
+  const [solid, setSolid] = useState(false)
+  useEffect(() => dialog.current.close(), [pathname])
   useEffect(() => {
-    const esc = (e) => e.key === 'Escape' && setOpen(false)
-    window.addEventListener('keydown', esc)
-    return () => window.removeEventListener('keydown', esc)
+    const f = () => setSolid(window.scrollY > 40)
+    f()
+    window.addEventListener('scroll', f, { passive: true })
+    return () => window.removeEventListener('scroll', f)
   }, [])
   return (
-    <header className={`binder ${open ? 'is-open' : ''}`}>
-      <div className="binder-top">
-        <Link to="/" className="mark" aria-label="Gilsulate home">
+    <>
+      <header className={`masthead ${solid ? 'solid' : ''}`}>
+        <Link to="/" className="brand" aria-label="Gilsulate home">
           <img src={media('logo.png')} alt="" width="245" height="238" />
-          <span>Gilsulate<small>Design &amp; Installation</small></span>
+          <span>Gilsulate</span>
         </Link>
-        <button type="button" className="binder-btn" aria-expanded={open} aria-controls="contents" onClick={() => setOpen(!open)}>
-          {open ? 'Close' : 'Contents'}
-        </button>
-      </div>
-      <nav id="contents" aria-label="Contents">
-        <ol>
-          {SECTIONS.map((s) => {
-            const active = here?.section === s
-            return (
-              <li key={s.n}>
-                <Link to={s.pages[0][1]} className={active ? 'on' : ''}><span>{s.n}</span>{s.title}</Link>
-                {s.pages.length > 1 && (
-                  <ul className={active ? 'show' : ''}>
-                    {s.pages.map(([t, to], i) => (
-                      <li key={to}><Link to={to} aria-current={here?.section === s && here.index === i ? 'page' : undefined}>{t}</Link></li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            )
-          })}
-        </ol>
-        <p className="binder-foot"><a href={`tel:${CO.tel}`}>{CO.phone}</a><br /><a href={`mailto:${CO.email}`}>{CO.email}</a></p>
-      </nav>
-    </header>
+        <nav aria-label="Primary">
+          {QUICK.map(([t, to]) => <Link key={to} to={to} aria-current={pathname === to ? 'page' : undefined}>{t}</Link>)}
+          <button type="button" aria-haspopup="dialog" onClick={() => dialog.current.showModal()}>Menu</button>
+        </nav>
+      </header>
+      {/* native dialog: focus is trapped and Escape closes it */}
+      <dialog ref={dialog} className="menu" aria-label="All pages">
+        <div className="menu-top">
+          <a href={`tel:${CO.tel}`}>{CO.phone}</a>
+          <button type="button" onClick={() => dialog.current.close()}>Close</button>
+        </div>
+        <nav aria-label="All pages">
+          {NAV.map((g) => (
+            <div key={g.label}>
+              <h2><Link className={inGroup(g, pathname) ? 'on' : ''} to={g.to || g.items[0][1]} onClick={() => dialog.current.close()}>{g.label}</Link></h2>
+              {g.items && <ul>{g.items.map(([t, to]) => <li key={to}><Link to={to} aria-current={pathname === to ? 'page' : undefined} onClick={() => dialog.current.close()}>{t}</Link></li>)}</ul>}
+            </div>
+          ))}
+          <div><h2><Link to="/contact" onClick={() => dialog.current.close()}>Contact</Link></h2></div>
+        </nav>
+      </dialog>
+    </>
   )
 }
 
@@ -60,41 +60,41 @@ export default function App() {
     main.current?.focus({ preventScroll: true })
   }, [pathname])
   return (
-    <div className="book">
+    <>
       <button type="button" className="skip" onClick={() => main.current?.focus()}>Skip to content</button>
-      <Binder />
-      <div className="leaf">
-        <main ref={main} tabIndex={-1}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product" element={<P.ProductOverview />} />
-            <Route path="/product/what" element={<P.ProductWhat />} />
-            <Route path="/product/why" element={<P.TextPage key="why" id="why" />} />
-            <Route path="/product/standard" element={<P.TextPage key="standard" id="standard" />} />
-            <Route path="/product/sustainability" element={<P.TextPage key="sus" id="sustainability" />} />
-            <Route path="/product/components" element={<P.Components />} />
-            <Route path="/systems" element={<P.Systems />} />
-            <Route path="/systems/:id" element={<P.SystemDetail />} />
-            <Route path="/tech" element={<P.TechHub />} />
-            <Route path="/tech/faq" element={<P.Faq />} />
-            <Route path="/tech/density" element={<P.Density />} />
-            <Route path="/tech/case-studies" element={<P.Cases />} />
-            <Route path="/tech/case-studies/:id" element={<P.CaseDetail />} />
-            <Route path="/tech/documents" element={<P.Documents />} />
-            <Route path="/clients/:id" element={<P.ClientPage />} />
-            <Route path="/news" element={<P.News />} />
-            <Route path="/about" element={<P.About />} />
-            <Route path="/about/mission" element={<P.TextPage key="mission" id="mission" />} />
-            <Route path="/about/quality" element={<P.TextPage key="quality" id="quality" />} />
-            <Route path="/contact" element={<P.Contact />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </main>
-        <footer className="colophon">
-          <p>© {new Date().getFullYear()} {CO.name} A woman-owned small business.</p>
-          <p>Gilsulate and 500XR are trademarks of Gilsulate International, Inc. Design concept, not live.</p>
-        </footer>
-      </div>
-    </div>
+      <Masthead />
+      <main ref={main} tabIndex={-1}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product" element={<P.ProductOverview />} />
+          <Route path="/product/what" element={<P.ProductWhat />} />
+          <Route path="/product/why" element={<P.TextPage key="why" id="why" />} />
+          <Route path="/product/standard" element={<P.TextPage key="standard" id="standard" />} />
+          <Route path="/product/sustainability" element={<P.TextPage key="sus" id="sustainability" />} />
+          <Route path="/product/components" element={<P.Components />} />
+          <Route path="/systems" element={<P.Systems />} />
+          <Route path="/systems/:id" element={<P.SystemDetail />} />
+          <Route path="/tech" element={<P.TechHub />} />
+          <Route path="/tech/faq" element={<P.Faq />} />
+          <Route path="/tech/density" element={<P.Density />} />
+          <Route path="/tech/case-studies" element={<P.Cases />} />
+          <Route path="/tech/case-studies/:id" element={<P.CaseDetail />} />
+          <Route path="/tech/documents" element={<P.Documents />} />
+          <Route path="/clients/:id" element={<P.ClientPage />} />
+          <Route path="/news" element={<P.News />} />
+          <Route path="/about" element={<P.About />} />
+          <Route path="/about/mission" element={<P.TextPage key="mission" id="mission" />} />
+          <Route path="/about/quality" element={<P.TextPage key="quality" id="quality" />} />
+          <Route path="/contact" element={<P.Contact />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </main>
+      <footer className="foot">
+        <div className="wrap">
+          <p>{CO.name}<br />{CO.addr1}, {CO.addr2}<br /><a href={`mailto:${CO.email}`}>{CO.email}</a></p>
+          <p>© {new Date().getFullYear()}. A woman-owned small business. Gilsulate and 500XR are trademarks of Gilsulate International, Inc. Design concept, not live.</p>
+        </div>
+      </footer>
+    </>
   )
 }

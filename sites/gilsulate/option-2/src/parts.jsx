@@ -1,94 +1,105 @@
 import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { locate } from './manual.js'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { NAV, inGroup } from './nav.js'
 import { media, CO } from './data.js'
 
-export function Plate({ src, alt, fig, caption, pos = '50% 50%', ratio = '1920 / 718', eager }) {
+export const PHOTOS = {
+  trench: ['trench.jpg', 'Crew beside a deep trench carrying several pipes next to an excavator', '55% 50%'],
+  crane: ['bag-crane.jpg', 'Bulk bag of Gilsulate 500 XR lifted by crane over a formed trench', '47% 45%'],
+  lng: ['lng-night.jpg', 'A gas carrier alongside a lit terminal at dusk', '62% 55%'],
+  tank: ['tank-fog.jpg', 'Large storage tank in haze with a crane and excavation in the foreground', '70% 50%'],
+  pipes: ['trench-pipes.jpg', 'White pipes and round piles in an open excavation', '50% 65%'],
+  hardhats: ['hardhats.jpg', 'Four people in hard hats and safety vests on a city building site', '64% 45%'],
+}
+
+export function Photo({ id, pos, eager, decorative }) {
+  const [file, alt, at] = PHOTOS[id]
+  return <img src={media(file)} alt={decorative ? '' : alt} style={{ objectPosition: pos || at }} loading={eager ? 'eager' : 'lazy'} />
+}
+
+export function Figure({ id, caption, className = '' }) {
   return (
-    <figure className="plate">
-      <div className="plate-mount">
-        <img src={media(src)} alt={alt} style={{ aspectRatio: ratio, objectPosition: pos }} loading={eager ? 'eager' : 'lazy'} />
-      </div>
-      <figcaption><b>Fig. {fig}.</b> {caption}</figcaption>
+    <figure className={`figure ${className}`}>
+      <Photo id={id} />
+      {caption && <figcaption>{caption}</figcaption>}
     </figure>
   )
 }
 
-// One manual page: running head, section number, title, body, and "turn the page" links.
-export function Page({ title, lead, children }) {
+export function useTitle(title) {
+  useEffect(() => { document.title = title ? `${title} | Gilsulate 500XR` : 'Gilsulate 500XR | Underground Pipe Insulation' }, [title])
+}
+
+// Inner page: full-width photograph carrying the title, section links, then the article.
+export function Page({ title, intro, photo = 'trench', note, children }) {
   const { pathname } = useLocation()
-  const here = locate(pathname)
-  useEffect(() => { document.title = `${title} | Gilsulate 500XR` }, [title])
-  const prev = here && here.section.pages[here.index - 1]
-  const next = here && here.section.pages[here.index + 1]
+  const group = NAV.find((g) => inGroup(g, pathname))
+  useTitle(title)
   return (
-    <article className="page">
-      {here && (
-        <div className="running">
-          <span>Section {here.section.n}. {here.section.title}</span>
-          <span>{here.number}</span>
-        </div>
-      )}
-      <h1>{title}</h1>
-      {lead && <p className="lead">{lead}</p>}
-      {children}
-      {(prev || next) && (
-        <nav className="turn" aria-label="Previous and next page">
-          {prev ? <Link to={prev[1]}><small>Previous page</small>{prev[0]}</Link> : <span />}
-          {next && <Link to={next[1]} className="turn-next"><small>Next page</small>{next[0]}</Link>}
+    <>
+      <header className="cover">
+        <Photo id={photo} eager />
+        <div className="wrap"><h1>{title}</h1></div>
+      </header>
+      {note && <p className="wrap cover-note">{note}</p>}
+      {group?.items && (
+        <nav className="strand" aria-label={`${group.label} pages`}>
+          <div className="wrap">{group.items.map(([t, to]) => <NavLink key={to} to={to} end={to === group.base}>{t}</NavLink>)}</div>
         </nav>
       )}
-      {pathname !== '/contact' && <ReplyCard />}
-    </article>
+      <article className="article">
+        {intro && <p className="wrap narrow standfirst">{intro}</p>}
+        {children}
+      </article>
+      {pathname !== '/contact' && <Closer />}
+    </>
   )
 }
 
-export function Clauses({ blocks }) {
+export function Chapters({ blocks }) {
   return blocks.map((b) => (
-    <section className="clause" key={b.h}>
+    <section className="wrap narrow chapter" key={b.h}>
       <h2>{b.h}</h2>
-      <div>
-        {b.p?.map((t) => <p key={t}>{t}</p>)}
-        {b.list && <ul>{b.list.map((l) => <li key={l}>{l}</li>)}</ul>}
-      </div>
+      {b.p?.map((t) => <p key={t}>{t}</p>)}
+      {b.list && <ul>{b.list.map((l) => <li key={l}>{l}</li>)}</ul>}
     </section>
   ))
 }
 
-export function Table({ caption, rows, head }) {
-  return (
-    <table className="ledger">
-      {caption && <caption>{caption}</caption>}
-      {head && <thead><tr>{head.map((h) => <th key={h} scope="col">{h}</th>)}</tr></thead>}
-      <tbody>
-        {rows.map(([k, ...rest]) => (
-          <tr key={k}><th scope="row">{k}</th>{rest.map((v, i) => <td key={i}>{v}</td>)}</tr>
-        ))}
-      </tbody>
-    </table>
-  )
+export function Details({ rows }) {
+  return <dl className="wrap narrow details">{rows.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
 }
 
-export function Testimony({ text, by }) {
+export function PullQuote({ text, by }) {
   return (
-    <figure className="testimony">
+    <figure className="wrap pull">
       <blockquote><p>&ldquo;{text}&rdquo;</p></blockquote>
       <figcaption>{by}</figcaption>
     </figure>
   )
 }
 
-export function ReplyCard() {
+export function Index({ items }) {
   return (
-    <aside className="reply" aria-label="Request a quotation">
-      <div>
-        <h2>Send us the particulars.</h2>
-        <p>Pipe sizes, operating temperatures, trench length and schedule are enough to begin.</p>
+    <ul className="wrap index">
+      {items.map(([title, note, to]) => (
+        <li key={to}><Link to={to}><strong>{title}</strong><span>{note}</span></Link></li>
+      ))}
+    </ul>
+  )
+}
+
+export function Closer() {
+  return (
+    <section className="closer">
+      <div className="wrap">
+        <h2>Tell us about your trench.</h2>
+        <p>Pipe sizes, operating temperatures, length and schedule are enough to start.</p>
+        <div className="closer-act">
+          <Link to="/contact" className="button">Request a quote</Link>
+          <a href={`tel:${CO.tel}`}>{CO.phone}</a>
+        </div>
       </div>
-      <div className="reply-act">
-        <Link to="/contact" className="stamp">Request a quotation</Link>
-        <a href={`tel:${CO.tel}`}>or telephone {CO.phone}</a>
-      </div>
-    </aside>
+    </section>
   )
 }
