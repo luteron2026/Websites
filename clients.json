@@ -13,6 +13,20 @@
           "subtitle": "Industrial, dark and technical",
           "notes": "Bold engineering look with heat-orange accents. Full site: product, systems, tech info, case studies, news, about and contact.",
           "path": "sites/gilsulate/option-1"
+        },
+        {
+          "id": "63bbw9",
+          "title": "Option 2",
+          "subtitle": "Heritage field manual",
+          "notes": "Styled like a long-established engineering manual: paper and ink, numbered sections, a drawn trench cross-section and the original crane photo. Same full set of pages.",
+          "path": "sites/gilsulate/option-2"
+        },
+        {
+          "id": "ebptv5",
+          "title": "Option 3",
+          "subtitle": "Clean and bright",
+          "notes": "Light corporate look in the logo blue and red, with daylight photography and a role picker for owners, engineers, contractors, EPC firms and military. Same full set of pages.",
+          "path": "sites/gilsulate/option-3"
         }
       ]
     }
