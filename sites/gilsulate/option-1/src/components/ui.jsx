@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import { media } from '../data.js'
 
 export function useReveal() {
   const ref = useRef(null)
@@ -53,10 +54,7 @@ export function Eyebrow({ children, tone = 'heat' }) {
 export function Logo({ light = true }) {
   return (
     <div className="flex items-center gap-3">
-      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
-        <circle cx="17" cy="9" r="7.5" fill="#38B6FF" />
-        <circle cx="17" cy="25" r="7.5" fill="#E0287A" />
-      </svg>
+      <img src={media('logo.png')} alt="" width="245" height="238" className="h-[52px] w-auto rounded-sm bg-white" />
       <div className="leading-none">
         <div className={`font-display text-[19px] font-extrabold tracking-tight ${light ? 'text-white' : 'text-ink'}`}>GILSULATE</div>
         <div className="label mt-1 text-[9px] text-heat">500XR</div>

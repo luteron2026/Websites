@@ -8,7 +8,8 @@
     return e
   }
   // Sites live at <root>/v/<id>/ ; showcase pages live one folder deep.
-  var siteUrl = function (id) { return '../v/' + id + '/' }
+  // The version in the address stops the browser showing a saved copy of an older build.
+  var siteUrl = function (id) { return '../v/' + id + '/?v=' + (window.SHOWCASE_VERSION || '') }
 
   // Scaled live preview of a site (renders the real page at 1440px wide, shrunk to fit).
   function thumb(id) {

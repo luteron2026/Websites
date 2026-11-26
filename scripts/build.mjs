@@ -5,6 +5,7 @@
 //   <admin>/                    your dashboard with every client (secret link)
 //   <slug>-<code>/              one page per client, contains ONLY that client's options
 //   v/<id>/                     each built website, under an unguessable id
+//   version.json                changes on every build; open pages watch it and reload
 //
 // Usage: node scripts/build.mjs            (build everything)
 //        node scripts/build.mjs --pages    (skip site builds, regenerate pages only)
@@ -26,13 +27,24 @@ const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<
 const json = (o) => JSON.stringify(o).replace(/</g, '\\u003c')
 const clientDir = (c) => `${c.slug}-${c.code}`
 
+// A --pages run leaves the built sites alone, so it keeps their version.
+const VERSION_FILE = path.join(OUT, 'version.json')
+const VERSION = pagesOnly && fs.existsSync(VERSION_FILE)
+  ? JSON.parse(fs.readFileSync(VERSION_FILE, 'utf8')).version
+  : `${(process.env.GITHUB_SHA || 'local').slice(0, 7)}-${Date.now().toString(36)}`
+// The update check for one HTML file, with the path from that file back to version.json.
+const updater = (htmlFile) => {
+  const rel = path.relative(path.dirname(htmlFile), VERSION_FILE).split(path.sep).join('/')
+  return `<script>${read('update.js').replace('__VERSION__', () => json(VERSION)).replace('__VERSION_FILE__', () => json(rel))}</script>`
+}
+
 function write(rel, content) {
   const f = path.join(OUT, rel)
   fs.mkdirSync(path.dirname(f), { recursive: true })
   fs.writeFileSync(f, content)
 }
 
-// Add noindex + the copy-protection guard to every HTML file of a built site.
+// Add noindex, the copy-protection guard and the update check to every HTML file of a built site.
 function protect(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     const f = path.join(dir, e.name)
@@ -41,8 +53,8 @@ function protect(dir) {
       let h = fs.readFileSync(f, 'utf8')
       if (h.includes('data-showcase-guard')) continue
       h = /<head[^>]*>/i.test(h)
-        ? h.replace(/<head[^>]*>/i, (m) => `${m}\n${NOINDEX}\n${GUARD}`)
-        : `${NOINDEX}\n${GUARD}\n${h}`
+        ? h.replace(/<head[^>]*>/i, (m) => `${m}\n${NOINDEX}\n${GUARD}\n${updater(f)}`)
+        : `${NOINDEX}\n${GUARD}\n${updater(f)}\n${h}`
       fs.writeFileSync(f, h)
     }
   }
@@ -69,11 +81,13 @@ function buildSite(opt) {
 }
 
 function page(file, { title, data, base }) {
+  // Client pages and the dashboard are both written one folder below the output root.
+  const check = updater(path.join(OUT, 'page', 'index.html'))
   return read(file)
-    .replace('<!--HEAD-->', `${NOINDEX}\n<link rel="stylesheet" href="${base}showcase.css" />\n${GUARD}`)
+    .replace('<!--HEAD-->', () => `${NOINDEX}\n<link rel="stylesheet" href="${base}showcase.css?v=${VERSION}" />\n${GUARD}\n${check}`)
     .replaceAll('%TITLE%', esc(title))
     .replace('/*DATA*/null', json(data))
-    .replace('<!--SCRIPT-->', `<script src="${base}showcase.js"></script>`)
+    .replace('<!--SCRIPT-->', `<script src="${base}showcase.js?v=${VERSION}"></script>`)
 }
 
 // ---------- build ----------
@@ -96,6 +110,7 @@ write('showcase.css', read('showcase.css'))
 write('showcase.js', read('showcase.js'))
 write('robots.txt', 'User-agent: *\nDisallow: /\n')
 write('.nojekyll', '')
+write('version.json', json({ version: VERSION }))
 // Root and 404 are self-contained (no external CSS), so they work at any path.
 const blank = read('private.html').replace('<!--HEAD-->', `${NOINDEX}\n${GUARD}`)
 write('index.html', blank)

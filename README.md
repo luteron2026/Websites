@@ -38,6 +38,8 @@ See every link:
 npm run links -- https://luteron2026.github.io/Websites
 ```
 
+Open pages update themselves: each build changes `version.json`, and the client page, dashboard and sites check it when opened, when you return to the tab and once a minute. They reload when it changes, unless someone has typed into a form.
+
 Preview locally:
 ```bash
 npm run build && npm run serve
