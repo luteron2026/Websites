@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy showcase to GitHub Pages
 on:
   push:
     branches: [main]
@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm run build
+          cache-dependency-path: '**/package-lock.json'
+      - run: node scripts/build.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
