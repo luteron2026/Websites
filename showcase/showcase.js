@@ -56,6 +56,7 @@
     $('intro').textContent = c.intro
     $('count').textContent = plural(c.options.length, 'option') + ' to review'
     contactFooter(S.contact)
+    $('disclaimer').textContent = (S.disclaimer || '').replace('{client}', function () { return c.name })
     var grid = $('grid')
     if (c.options.length >= 3) grid.classList.add('three')
 

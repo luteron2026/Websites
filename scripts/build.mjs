@@ -44,7 +44,13 @@ function write(rel, content) {
   fs.writeFileSync(f, content)
 }
 
-// Add noindex, the copy-protection guard and the update check to every HTML file of a built site.
+// A small fixed label so a site opened by a direct or forwarded link is still marked as a demo.
+// It ignores clicks, so it never blocks anything underneath.
+const BADGE = cfg.demo?.label
+  ? `<div data-showcase-demo style="position:fixed;left:50%;transform:translateX(-50%);bottom:6px;z-index:2147483647;width:max-content;max-width:calc(100% - 16px);text-align:center;box-sizing:border-box;padding:5px 10px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(17,17,17,.85);color:#fff;font:500 11px/1.4 system-ui,sans-serif;letter-spacing:normal;text-transform:none;pointer-events:none">${esc(cfg.demo.label)}</div>`
+  : ''
+
+// Add noindex, the copy-protection guard, the update check and the demo label to every HTML file of a built site.
 function protect(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     const f = path.join(dir, e.name)
@@ -55,6 +61,7 @@ function protect(dir) {
       h = /<head[^>]*>/i.test(h)
         ? h.replace(/<head[^>]*>/i, (m) => `${m}\n${NOINDEX}\n${GUARD}\n${updater(f)}`)
         : `${NOINDEX}\n${GUARD}\n${updater(f)}\n${h}`
+      h = /<\/body>/i.test(h) ? h.replace(/<\/body>/i, (m) => `${BADGE}\n${m}`) : `${h}\n${BADGE}`
       fs.writeFileSync(f, h)
     }
   }
@@ -80,13 +87,14 @@ function buildSite(opt) {
   protect(dest)
 }
 
-function page(file, { title, data, base, contact }) {
+function page(file, { title, data, base, contact, disclaimer }) {
   // Client pages and the dashboard are both written one folder below the output root.
   const check = updater(path.join(OUT, 'page', 'index.html'))
   return read(file)
     .replace('<!--HEAD-->', () => `${NOINDEX}\n<link rel="stylesheet" href="${base}showcase.css?v=${VERSION}" />\n${GUARD}\n${check}`)
     .replaceAll('%TITLE%', esc(title))
     .replace('/*CONTACT*/null', () => json(contact || null))
+    .replace('/*DISCLAIMER*/null', () => json(disclaimer || null))
     .replace('/*DATA*/null', () => json(data))
     .replace('<!--SCRIPT-->', `<script src="${base}showcase.js?v=${VERSION}"></script>`)
 }
@@ -120,7 +128,7 @@ write('404.html', blank)
 // Each client page gets ONLY its own options baked in: nothing about other clients ships to it.
 const strip = (c) => ({ name: c.name, intro: c.intro || '', options: c.options.map(({ id, title, subtitle, notes }) => ({ id, title, subtitle: subtitle || '', notes: notes || '' })) })
 for (const c of cfg.clients) {
-  write(`${clientDir(c)}/index.html`, page('client.html', { title: `${c.name} · Website options`, data: strip(c), base: '../', contact: cfg.contact }))
+  write(`${clientDir(c)}/index.html`, page('client.html', { title: `${c.name} · Website options`, data: strip(c), base: '../', contact: cfg.contact, disclaimer: cfg.demo?.disclaimer }))
 }
 
 write(`${cfg.admin}/index.html`, page('admin.html', {

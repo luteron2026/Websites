@@ -49,6 +49,10 @@ npm run build && npm run serve
 
 Fill in `contact` in `clients.json` (`name`, `email`, `phone`, `website`, plus the `heading` and `message`). It appears at the bottom of every client page. Empty fields are left out, and the footer stays hidden until there is an email, phone or website.
 
+## Demo disclaimer
+
+`demo` in `clients.json` holds the `disclaimer` shown at the bottom of each client page (`{client}` becomes the client's name) and the `label` pinned to the corner of every built website. Leave either empty to turn it off.
+
 ## One-time GitHub setup
 
 Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.

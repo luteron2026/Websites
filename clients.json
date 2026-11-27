@@ -8,6 +8,10 @@
     "phone": "",
     "website": "https://www.linkedin.com/in/joshatran"
   },
+  "demo": {
+    "label": "Demo by Josh Tran · not the official site",
+    "disclaimer": "Demo only. These are sample designs by Josh Tran, not official websites, and aren’t endorsed by {client} unless stated. Names, logos and photos belong to their owners. Details such as prices and dates may be inaccurate."
+  },
   "clients": [
     {
       "name": "Gilsulate International",
