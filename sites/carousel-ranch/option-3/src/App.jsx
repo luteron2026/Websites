@@ -1,24 +1,13 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Home from './Home.jsx'
 import Pages, { Donate } from './pages.jsx'
 import { Main, Menu, NavLinks } from './core.jsx'
 import { CO, NAV } from './data.js'
 
-// Larger text on request, remembered on this device when the browser allows it.
-function TextSize() {
-  const [big, setBig] = useState(() => { try { return localStorage.getItem('cr-text') === 'big' } catch { return false } })
-  useEffect(() => {
-    document.documentElement.style.fontSize = big ? '122%' : ''
-    try { localStorage.setItem('cr-text', big ? 'big' : '') } catch { /* storage blocked */ }
-  }, [big])
-  return <button type="button" className="size" aria-pressed={big} onClick={() => setBig(!big)}>{big ? 'Normal text' : 'Larger text'}</button>
-}
-
 export default function App() {
   return (
     <>
-      <div className="util"><a href={`tel:${CO.tel}`}>{CO.phone}</a><TextSize /></div>
+      <div className="util"><a className="where" href={CO.map} target="_blank" rel="noreferrer">{CO.address}</a><a href={`tel:${CO.tel}`}>{CO.phone}</a></div>
       <header className="head">
         <Link to="/" className="brand">Carousel Ranch</Link>
         <Donate />
