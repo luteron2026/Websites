@@ -23,6 +23,19 @@
     <div class="grid" id="grid"></div>
   </main>
 
+  <footer class="contact" id="contact" hidden>
+    <div class="wrap contact-in">
+      <div>
+        <h2 id="contactHeading"></h2>
+        <p id="contactMessage"></p>
+      </div>
+      <div class="contact-details">
+        <strong id="contactName"></strong>
+        <ul id="contactLinks"></ul>
+      </div>
+    </div>
+  </footer>
+
   <div class="viewer" id="viewer" hidden aria-modal="true" role="dialog" aria-label="Website preview">
     <div class="bar">
       <button class="btn ghost" id="close" aria-label="Back to all options">
@@ -47,7 +60,7 @@
     </div>
   </div>
 
-  <script>window.SHOWCASE = { page: 'client', data: /*DATA*/null }</script>
+  <script>window.SHOWCASE = { page: 'client', contact: /*CONTACT*/null, data: /*DATA*/null }</script>
   <!--SCRIPT-->
 </body>
 </html>

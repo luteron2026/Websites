@@ -80,13 +80,14 @@ function buildSite(opt) {
   protect(dest)
 }
 
-function page(file, { title, data, base }) {
+function page(file, { title, data, base, contact }) {
   // Client pages and the dashboard are both written one folder below the output root.
   const check = updater(path.join(OUT, 'page', 'index.html'))
   return read(file)
     .replace('<!--HEAD-->', () => `${NOINDEX}\n<link rel="stylesheet" href="${base}showcase.css?v=${VERSION}" />\n${GUARD}\n${check}`)
     .replaceAll('%TITLE%', esc(title))
-    .replace('/*DATA*/null', json(data))
+    .replace('/*CONTACT*/null', () => json(contact || null))
+    .replace('/*DATA*/null', () => json(data))
     .replace('<!--SCRIPT-->', `<script src="${base}showcase.js?v=${VERSION}"></script>`)
 }
 
@@ -119,7 +120,7 @@ write('404.html', blank)
 // Each client page gets ONLY its own options baked in: nothing about other clients ships to it.
 const strip = (c) => ({ name: c.name, intro: c.intro || '', options: c.options.map(({ id, title, subtitle, notes }) => ({ id, title, subtitle: subtitle || '', notes: notes || '' })) })
 for (const c of cfg.clients) {
-  write(`${clientDir(c)}/index.html`, page('client.html', { title: `${c.name} · Website options`, data: strip(c), base: '../' }))
+  write(`${clientDir(c)}/index.html`, page('client.html', { title: `${c.name} · Website options`, data: strip(c), base: '../', contact: cfg.contact }))
 }
 
 write(`${cfg.admin}/index.html`, page('admin.html', {

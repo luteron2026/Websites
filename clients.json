@@ -1,5 +1,13 @@
 {
   "admin": "6wnzs893xs",
+  "contact": {
+    "heading": "Like what you see?",
+    "message": "Get in touch and we can make your favorite the real thing.",
+    "name": "Josh Tran",
+    "email": "joshua.a.tran@protonmail.com",
+    "phone": "",
+    "website": "https://www.linkedin.com/in/joshatran"
+  },
   "clients": [
     {
       "name": "Gilsulate International",

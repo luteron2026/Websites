@@ -27,11 +27,35 @@
 
   function plural(n, w) { return n + ' ' + w + (n === 1 ? '' : 's') }
 
+  // Your contact details, from "contact" in clients.json. Hidden until there is a way to reach you.
+  function contactFooter(k) {
+    if (!k || !(k.email || k.phone || k.website)) return
+    $('contactHeading').textContent = k.heading || ''
+    $('contactMessage').textContent = k.message || ''
+    $('contactName').textContent = k.name || ''
+    var add = function (text, href) {
+      var a = el('a', '', text)
+      a.href = href
+      if (/^https?:/.test(href)) { a.target = '_blank'; a.rel = 'noopener' }
+      var li = el('li')
+      li.appendChild(a)
+      $('contactLinks').appendChild(li)
+    }
+    if (k.email) add(k.email, 'mailto:' + k.email)
+    if (k.phone) add(k.phone, 'tel:' + k.phone.replace(/[^\d+]/g, ''))
+    if (k.website) {
+      var site = k.website.replace(/^https?:\/\//i, '').replace(/\/$/, '')
+      add(site, /^https?:\/\//i.test(k.website) ? k.website : 'https://' + k.website)
+    }
+    $('contact').hidden = false
+  }
+
   // ---------------- client page ----------------
   function clientPage(c) {
     $('clientName').textContent = c.name
     $('intro').textContent = c.intro
     $('count').textContent = plural(c.options.length, 'option') + ' to review'
+    contactFooter(S.contact)
     var grid = $('grid')
     if (c.options.length >= 3) grid.classList.add('three')
 

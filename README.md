@@ -45,6 +45,10 @@ Preview locally:
 npm run build && npm run serve
 ```
 
+## Your contact footer
+
+Fill in `contact` in `clients.json` (`name`, `email`, `phone`, `website`, plus the `heading` and `message`). It appears at the bottom of every client page. Empty fields are left out, and the footer stays hidden until there is an email, phone or website.
+
 ## One-time GitHub setup
 
 Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
