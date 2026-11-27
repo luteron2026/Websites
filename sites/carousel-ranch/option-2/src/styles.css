@@ -52,3 +52,6 @@ h2 { font-size: clamp(2.2rem, 4.4vw, 3.6rem); }
 .level:nth-of-type(even) > img { order: 2; }
 .names { list-style: none; padding: 0; columns: 3 7rem; } .names li { font-family: var(--display); font-size: 1.9rem; border-bottom: 1px solid var(--line); break-inside: avoid; }
 .foot { padding-block: 4rem 2rem; border-top: 1px solid var(--line-strong); margin-top: 3rem; } .foot > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; } .fine { font-size: .85rem; color: var(--muted); }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; aspect-ratio: clamp(1.25, var(--ar), 1.7); width: min(100%, calc(clamp(1.25, var(--ar), 1.7) * 34rem), calc(var(--nw) * 1.6)); align-self: center; justify-self: center; margin-inline: auto; }

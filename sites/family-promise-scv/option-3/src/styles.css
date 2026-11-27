@@ -72,3 +72,6 @@ section:not(.blue) > .impact dt, .section .impact dt { color: var(--accent); }
 .big { font-family: var(--display); font-stretch: 122%; font-weight: 900; font-size: clamp(2.2rem, 6.5vw, 5.4rem); line-height: 1; color: var(--sun); }
 .foot > div > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
 .fine { font-size: .9rem; opacity: .8; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; aspect-ratio: clamp(1.25, var(--ar), 1.7); width: min(100%, calc(clamp(1.25, var(--ar), 1.7) * 34rem), calc(var(--nw) * 1.6)); align-self: center; justify-self: center; margin-inline: auto; }

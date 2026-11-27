@@ -74,3 +74,8 @@ h2 { font-size: clamp(2.6rem, 6vw, 5rem); }
 .huge { font-family: var(--display); text-transform: uppercase; font-weight: 900; font-size: clamp(4rem, 17vw, 15rem); line-height: .85; color: transparent; -webkit-text-stroke: 1.5px var(--line-strong); }
 .cols { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
 .fine { color: var(--muted); font-size: .9rem; margin: 0; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover { min-height: min(92svh, 48rem); }
+.cover > img { object-position: 50% 25%; }
+@media (max-width: 760px) { .cover { min-height: 30rem; } }

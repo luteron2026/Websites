@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <section className="wrap hero">
         <div className="rise"><h1>Horses help our students succeed.</h1><p className="lead">{MISSION}</p></div>
-        <Img id="staff-sidewalk" eager />
+        <Img id="seated" eager />
       </section>
       <section className="wrap section" aria-labelledby="iam">
         <h2 id="iam">Choose what fits you</h2>

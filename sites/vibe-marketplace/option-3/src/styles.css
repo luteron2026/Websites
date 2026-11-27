@@ -70,3 +70,6 @@ h2 { font-size: clamp(2.1rem, 4vw, 3.2rem); }
 .foot > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; }
 .foot .brand { margin-bottom: .5rem; } .foot .brand i { color: var(--pink); }
 .fine { font-size: .82rem; color: #b9bfae; margin-bottom: 0; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; width: 100%; aspect-ratio: clamp(1.1, var(--ar), 1.6); align-self: center; }

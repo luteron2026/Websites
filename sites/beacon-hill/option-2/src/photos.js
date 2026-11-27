@@ -30,7 +30,7 @@ export const PHOTOS = {
   "alt": "Young students in uniform playing a circle game on the lawn with a teacher",
   "w": 1700,
   "h": 1125,
-  "pos": "50% 60%"
+  "pos": "50% 30%"
  },
  "crest": {
   "f": "crest.jpg",
@@ -134,6 +134,7 @@ export const PHOTOS = {
   "f": "young-artist.jpg",
   "alt": "A young student smiling over her painting",
   "w": 533,
-  "h": 800
+  "h": 800,
+  "pos": "50% 0%"
  }
 }

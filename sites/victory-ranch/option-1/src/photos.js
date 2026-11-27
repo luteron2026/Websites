@@ -222,7 +222,8 @@ export const PHOTOS = {
   "f": "sack-race.jpg",
   "alt": "A little girl getting help into a sack race",
   "w": 426,
-  "h": 600
+  "h": 600,
+  "pos": "50% 20%"
  },
  "slide": {
   "f": "slide.jpg",
@@ -234,7 +235,8 @@ export const PHOTOS = {
   "f": "splash.jpg",
   "alt": "Campers splashing in a water slide pool",
   "w": 352,
-  "h": 600
+  "h": 600,
+  "pos": "50% 45%"
  },
  "study": {
   "f": "study.jpg",
@@ -246,13 +248,15 @@ export const PHOTOS = {
   "f": "swimmers.jpg",
   "alt": "Girls at the edge of the swimming pool",
   "w": 440,
-  "h": 600
+  "h": 600,
+  "pos": "50% 60%"
  },
  "target": {
   "f": "target.jpg",
   "alt": "A camper kneeling beside an arrow in the target",
   "w": 620,
-  "h": 600
+  "h": 600,
+  "pos": "25% 50%"
  },
  "teen-girls": {
   "f": "teen-girls.jpg",

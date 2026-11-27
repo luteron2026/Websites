@@ -16,7 +16,8 @@ export const PHOTOS = {
   "f": "children.jpg",
   "alt": "Four laughing children sitting arm in arm",
   "w": 1500,
-  "h": 1003
+  "h": 1003,
+  "pos": "50% 30%"
  },
  "den": {
   "f": "den.jpg",

@@ -85,3 +85,6 @@ h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
 .gallery { columns: 3 14rem; }
 .foot { border-top: 1px solid var(--line); padding-block: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
 .fine { width: 100%; font-size: .82rem; color: var(--muted); margin: 0; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; aspect-ratio: clamp(1.25, var(--ar), 1.7); width: min(100%, calc(clamp(1.25, var(--ar), 1.7) * 34rem), calc(var(--nw) * 1.6)); align-self: center; justify-self: center; margin-inline: auto; }

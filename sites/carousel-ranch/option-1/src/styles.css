@@ -53,3 +53,6 @@ h2 { font-size: clamp(2.1rem, 4vw, 3.2rem); }
 .foot { background: var(--ink); color: #e6efed; padding-bottom: 2rem; margin-top: 3rem; } .foot .wrap { padding-top: 3rem; }
 .tag { font-family: var(--display); font-weight: 600; font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
 .foot .wrap > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; } .fine { font-size: .85rem; opacity: .7; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; width: 100%; aspect-ratio: clamp(1.1, var(--ar), 1.6); align-self: center; }

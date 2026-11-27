@@ -77,7 +77,8 @@ export const PHOTOS = {
   "f": "crates.jpg",
   "alt": "A boy diving to catch balls with a crate",
   "w": 780,
-  "h": 600
+  "h": 600,
+  "pos": "50% 40%"
  },
  "crowd": {
   "f": "crowd.jpg",
@@ -126,7 +127,8 @@ export const PHOTOS = {
   "f": "friends.jpg",
   "alt": "Three smiling campers with their arms around each other",
   "w": 1091,
-  "h": 900
+  "h": 900,
+  "pos": "50% 30%"
  },
  "fun-day": {
   "f": "fun-day.jpg",
@@ -216,7 +218,8 @@ export const PHOTOS = {
   "f": "sack-race.jpg",
   "alt": "A little girl getting help into a sack race",
   "w": 426,
-  "h": 600
+  "h": 600,
+  "pos": "50% 20%"
  },
  "slide": {
   "f": "slide.jpg",
@@ -228,7 +231,8 @@ export const PHOTOS = {
   "f": "splash.jpg",
   "alt": "Campers splashing in a water slide pool",
   "w": 352,
-  "h": 600
+  "h": 600,
+  "pos": "50% 45%"
  },
  "study": {
   "f": "study.jpg",
@@ -240,13 +244,15 @@ export const PHOTOS = {
   "f": "swimmers.jpg",
   "alt": "Girls at the edge of the swimming pool",
   "w": 440,
-  "h": 600
+  "h": 600,
+  "pos": "50% 60%"
  },
  "target": {
   "f": "target.jpg",
   "alt": "A camper kneeling beside an arrow in the target",
   "w": 620,
-  "h": 600
+  "h": 600,
+  "pos": "25% 50%"
  },
  "teen-girls": {
   "f": "teen-girls.jpg",
@@ -276,7 +282,8 @@ export const PHOTOS = {
   "f": "winter-friends.jpg",
   "alt": "Friends standing arm in arm on a grey winter day",
   "w": 618,
-  "h": 600
+  "h": 600,
+  "pos": "50% 85%"
  },
  "work-week": {
   "f": "work-week.jpg",

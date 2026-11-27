@@ -53,3 +53,9 @@ h2 { font-size: clamp(2rem, 3.8vw, 3rem); }
 .foot > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; }
 .portals { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-weight: 500; }
 .fine { font-size: .85rem; color: var(--muted); margin: 0; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; aspect-ratio: clamp(1.25, var(--ar), 1.7); width: min(100%, calc(clamp(1.25, var(--ar), 1.7) * 34rem), calc(var(--nw) * 1.6)); align-self: center; justify-self: center; margin-inline: auto; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.wide-photo img { height: min(80vh, 46rem); object-position: 50% 30%; }

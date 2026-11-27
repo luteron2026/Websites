@@ -9,7 +9,7 @@ export function Img({ id, eager, decorative, pos, className, sizes }) {
   const p = PHOTOS[id]
   return (
     <img src={media(p.f)} alt={decorative ? '' : p.alt} width={p.w} height={p.h} className={className} sizes={sizes}
-      style={pos || p.pos ? { objectPosition: pos || p.pos } : undefined} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+      style={{ '--ar': (p.w / p.h).toFixed(3), '--nw': `${p.w}px`, objectPosition: pos || p.pos }} loading={eager ? 'eager' : 'lazy'} decoding="async" />
   )
 }
 

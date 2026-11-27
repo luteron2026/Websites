@@ -85,3 +85,8 @@ figcaption { color: var(--accent); text-transform: uppercase; letter-spacing: .2
 .big:hover { text-decoration: underline; }
 .foot > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
 .foot span { color: var(--muted); font-size: .85rem; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover { min-height: min(92svh, 48rem); }
+.cover > img { object-position: 50% 25%; }
+@media (max-width: 760px) { .cover { min-height: 30rem; } }

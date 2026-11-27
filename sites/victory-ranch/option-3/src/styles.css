@@ -62,7 +62,7 @@ h2 { font-size: clamp(2rem, 4.2vw, 3.2rem); }
 .card { border: 1.5px solid var(--line); }
 .cover { width: min(1180px, 100% - 2.5rem); margin: 1.25rem auto 0; display: flex; flex-direction: column; }
 .cover > img { border-radius: 24px; height: clamp(16rem, 44vh, 28rem); }
-.cover-text { background: var(--bg); position: relative; margin: -4rem 0 0; width: min(44rem, 94%); padding: 1.5rem 2rem 0 0; border-radius: 0 24px 0 0; }
+.cover-text { background: var(--bg); position: relative; margin: -1.5rem 0 0; width: min(44rem, 94%); padding: 1.5rem 2rem 0 0; border-radius: 0 24px 0 0; }
 .cover h1 { font-size: clamp(2.5rem, 5.5vw, 4.4rem); margin-bottom: .2em; }
 .cover p { font-size: 1.2rem; color: var(--muted); margin: 0; }
 .rows { border-color: var(--accent); }
@@ -74,3 +74,6 @@ h2 { font-size: clamp(2rem, 4.2vw, 3.2rem); }
 .foot nav { display: grid; align-content: start; }
 .fine { font-size: .85rem; color: #93a9ba; margin-top: 2rem; }
 @media (max-width: 700px) { .foot > div { grid-template-columns: 1fr; } }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; aspect-ratio: clamp(1.25, var(--ar), 1.7); width: min(100%, calc(clamp(1.25, var(--ar), 1.7) * 34rem), calc(var(--nw) * 1.6)); align-self: center; justify-self: center; margin-inline: auto; }

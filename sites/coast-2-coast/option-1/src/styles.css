@@ -83,3 +83,6 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); }
 .foot nav { display: grid; align-content: start; font-weight: 700; }
 .fine { grid-column: 1 / -1; font-size: .85rem; margin: 0; }
 @media (max-width: 700px) { .foot > div { grid-template-columns: 1fr; } }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; width: 100%; aspect-ratio: clamp(1.1, var(--ar), 1.6); align-self: center; }

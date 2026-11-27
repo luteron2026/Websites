@@ -79,3 +79,7 @@ h2 { font-size: clamp(2.3rem, 4.4vw, 3.8rem); }
 .foot h2 { font-style: italic; font-weight: 400; }
 .foot .btn { background: var(--on-accent); border-color: var(--on-accent); color: var(--accent); margin-bottom: 2.5rem; }
 .fine { font-size: .8rem; opacity: .75; margin: 2rem 0 0; }
+
+/* Banners keep close to the shape of their photo, so heads and the action stay in frame. */
+.cover > img { height: auto; width: 100%; aspect-ratio: clamp(1.1, var(--ar), 1.6); align-self: center; }
+@media (max-width: 760px) { .cover > img { width: calc(100% + 2.5rem); } }

@@ -42,7 +42,8 @@ export const PHOTOS = {
   "f": "hoop.jpg",
   "alt": "A smiling boy in sunglasses holding a pool noodle and hoop",
   "w": 414,
-  "h": 414
+  "h": 414,
+  "pos": "50% 30%"
  },
  "logo": {
   "f": "logo.png",
@@ -54,7 +55,8 @@ export const PHOTOS = {
   "f": "paint.jpg",
   "alt": "A girl covered in color powder making a peace sign",
   "w": 414,
-  "h": 414
+  "h": 414,
+  "pos": "50% 15%"
  },
  "pizza": {
   "f": "pizza.jpg",
@@ -66,7 +68,8 @@ export const PHOTOS = {
   "f": "pumpkins.jpg",
   "alt": "Three girls holding small pumpkins",
   "w": 414,
-  "h": 414
+  "h": 414,
+  "pos": "50% 5%"
  },
  "reading": {
   "f": "reading.jpg",
@@ -78,7 +81,8 @@ export const PHOTOS = {
   "f": "sandcastle.jpg",
   "alt": "Three children building a sand turtle at the water’s edge",
   "w": 414,
-  "h": 414
+  "h": 414,
+  "pos": "50% 40%"
  },
  "trio": {
   "f": "trio.jpg",
