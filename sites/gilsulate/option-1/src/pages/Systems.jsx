@@ -34,7 +34,7 @@ export function SystemsHub() {
                   <I size={22} className={TONE[c]} />
                   <div>
                     <h2 className="display text-xl leading-tight">{n}</h2>
-                    <p className="label mt-3 flex items-center gap-2 text-slate-500 transition-colors group-hover:text-heat">{c} <ArrowRight size={12} className="opacity-0 transition-opacity group-hover:opacity-100" /></p>
+                    <p className="label mt-3 flex items-center gap-2 text-slate-400 transition-colors group-hover:text-heat">{c} <ArrowRight size={12} className="opacity-0 transition-opacity group-hover:opacity-100" /></p>
                   </div>
                 </Link>
               )
@@ -66,7 +66,7 @@ export function SystemDetail() {
           <Stats items={[['35–800°F', 'Carrier pipe temperature range'], ['Pour in place', 'No mixing on site'], ['1 or 60 cu ft', 'Bag sizes, at use density']]} />
           <Blocks blocks={blocks} />
           <div className="reveal border-t border-line pt-8">
-            <div className="label text-slate-500">Related systems</div>
+            <div className="label text-slate-400">Related systems</div>
             <div className="mt-4 flex flex-wrap gap-2">
               {related.map(([n]) => <Link key={n} to={`/systems/${slug(n)}`} className="label border border-line px-4 py-3 text-slate-300 hover:border-heat hover:text-heat">{n}</Link>)}
               <Link to="/systems" className="label border border-heat bg-heat px-4 py-3 text-ink">All systems</Link>

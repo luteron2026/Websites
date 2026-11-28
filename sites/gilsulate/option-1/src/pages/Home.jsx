@@ -24,15 +24,15 @@ export default function Home() {
         <img src={media('hero-trench.jpg')} alt="Crew inspecting multiple insulated pipes laid in a deep trench beside an excavator" className="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_center]" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/90 via-ink/55 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-ink to-transparent" />
-        <div className="mx-auto flex min-h-[min(88dvh,780px)] max-w-[1280px] flex-col justify-end px-5 pb-16 pt-32 md:px-8 md:pb-20">
+        <div className="mx-auto flex min-h-[min(88dvh,780px)] max-w-[1280px] flex-col justify-end px-5 pb-12 pt-28 md:px-8 md:pb-20 md:pt-32">
           <div className="reveal"><Eyebrow>Underground pipe insulation since 1949</Eyebrow></div>
-          <h1 className="display reveal mt-6 max-w-4xl text-[clamp(2.8rem,7vw,6rem)]" data-d=".1">
+          <h1 className="display reveal mt-5 max-w-4xl text-[clamp(2.5rem,7vw,6rem)] md:mt-6" data-d=".1">
             Pipe that stays hot.<br />Or cold.<br /><span className="text-heat">For decades.</span>
           </h1>
-          <p className="reveal mt-7 max-w-xl text-lg leading-relaxed text-slate-200" data-d=".2">
+          <p className="reveal mt-5 max-w-xl text-base leading-relaxed md:mt-7 md:text-lg text-slate-200" data-d=".2">
             Gilsulate 500XR is the patented, pour-in-place insulation and corrosion protection for underground piping, tanks and structures.
           </p>
-          <div className="reveal mt-9 flex flex-wrap gap-4" data-d=".3">
+          <div className="reveal mt-7 flex flex-wrap gap-3 md:mt-9 md:gap-4" data-d=".3">
             <Link to="/contact" className="btn btn-heat">Request a quote <ArrowRight size={15} /></Link>
             <Link to="/product" className="btn btn-line !border-white/40">Explore the product</Link>
           </div>
@@ -54,7 +54,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-[1280px] items-center gap-12 px-5 py-20 md:px-8 lg:grid-cols-[1.1fr_1fr]">
           <figure className="reveal">
             <img src={media('bag-crane.jpg')} alt="A bulk bag marked Gilsulate 500 XR lifted by crane over an open trench" className="aspect-[16/10] w-full object-cover" loading="lazy" />
-            <figcaption className="label mt-3 text-slate-500">500XR bulk bag, lifted into place on site</figcaption>
+            <figcaption className="label mt-3 text-slate-400">500XR bulk bag, lifted into place on site</figcaption>
           </figure>
           <div>
             <div className="reveal"><Eyebrow>In the field</Eyebrow></div>
@@ -106,7 +106,7 @@ export default function Home() {
           <div className="mt-10 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {FEATURED.map((n, i) => (
               <Link key={n} to={`/systems/${slug(n)}`} data-d={i * 0.07} className="reveal group flex min-h-[200px] flex-col justify-between bg-ink p-7 transition-colors hover:bg-slate2">
-                <span className="label text-slate-500">0{i + 1}</span>
+                <span className="label text-slate-400">0{i + 1}</span>
                 <h3 className="display text-2xl leading-tight group-hover:text-heat">{n}</h3>
               </Link>
             ))}
@@ -126,7 +126,7 @@ export default function Home() {
           <div className="mt-10 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {CASE_STUDIES.slice(0, 4).map((c, i) => (
               <Link key={c.slug} to={`/tech/case-studies/${c.slug}`} data-d={i * 0.07} className="reveal group relative flex min-h-[240px] flex-col justify-between bg-ink p-7 transition-colors hover:bg-ink/60">
-                <span className="label text-slate-500">Case study 0{i + 1}</span>
+                <span className="label text-slate-400">Case study 0{i + 1}</span>
                 <div>
                   <h3 className="display text-2xl leading-tight">{c.name}</h3>
                   <p className="label mt-3 text-heat">{c.type}</p>

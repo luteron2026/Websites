@@ -79,12 +79,12 @@ function Footer() {
         </div>
         {[NAV[0], NAV[1], NAV[3]].map((g) => (
           <div key={g.label}>
-            <div className="label mb-4 text-slate-500">{g.label}</div>
+            <div className="label mb-4 text-slate-400">{g.label}</div>
             <ul className="space-y-2 text-sm text-slate-300">{g.items.map(([t, to]) => <li key={to}><Link className="hover:text-heat" to={to}>{t}</Link></li>)}</ul>
           </div>
         ))}
         <div>
-          <div className="label mb-4 text-slate-500">Contact</div>
+          <div className="label mb-4 text-slate-400">Contact</div>
           <ul className="space-y-2 text-sm text-slate-300">
             <li><a className="hover:text-heat" href={`tel:${CO.tel}`}>{CO.phone}</a></li>
             <li><a className="hover:text-heat" href={`mailto:${CO.email}`}>{CO.email}</a></li>
@@ -96,7 +96,7 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-line px-5 py-5 text-center md:px-8">
-        <span className="label text-slate-500">© 2026 {CO.name} · Gilsulate and 500XR are trademarks of Gilsulate International, Inc. · Design concept, not live</span>
+        <span className="label text-slate-400">© 2026 {CO.name} · Gilsulate and 500XR are trademarks of Gilsulate International, Inc. · Design concept, not live</span>
       </div>
     </footer>
   )

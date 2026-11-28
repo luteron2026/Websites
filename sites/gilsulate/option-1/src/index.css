@@ -11,9 +11,10 @@ body { background:#0A1017; color:#E6EBF0; font-family:Inter,sans-serif; -webkit-
 .btn-heat:hover { background:#ff824a; }
 .btn-line { border:1px solid #3a4c60; color:#E6EBF0; }
 .btn-line:hover { border-color:#FF6A2B; color:#FF6A2B; }
-.reveal { opacity:0; transform:translateY(24px); }
+@media (max-width:640px) { .label { letter-spacing:.1em; } }
+@media print { .reveal { opacity:1 !important; transform:none !important; } header.fixed { position:absolute; } }
 @keyframes flow { to { stroke-dashoffset:-40; } }
 @keyframes pulse-heat { 0%,100% { opacity:.55 } 50% { opacity:.95 } }
 @keyframes marquee { to { transform:translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } .reveal { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
 :focus-visible { outline:2px solid #FF6A2B; outline-offset:3px; }

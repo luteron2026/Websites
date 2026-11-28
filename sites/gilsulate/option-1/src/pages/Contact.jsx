@@ -68,7 +68,7 @@ export default function Contact() {
             ].map(([I, l, v, h]) => (
               <div key={l} className="bg-ink p-6">
                 <I size={18} className="text-heat" />
-                <div className="label mt-4 text-slate-500">{l}</div>
+                <div className="label mt-4 text-slate-400">{l}</div>
                 {h ? <a href={h} className="display mt-1 block text-2xl hover:text-heat">{v}</a> : <p className="mt-1 text-slate-300">{v}</p>}
               </div>
             ))}

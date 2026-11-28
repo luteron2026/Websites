@@ -1,23 +1,40 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { media } from '../data.js'
 
+// Fade-in on scroll, as an enhancement only: content is visible by default (CSS),
+// and anything that is on screen or already scrolled past is always revealed,
+// so fast scrolling, printing and screenshots never leave sections blank.
 export function useReveal() {
   const ref = useRef(null)
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current
-    if (!el) return
-    const items = el.querySelectorAll('.reveal')
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          gsap.to(e.target, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: Number(e.target.dataset.d || 0) })
-          io.unobserve(e.target)
-        }
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let pending = Array.from(el.querySelectorAll('.reveal'))
+    gsap.set(pending, { opacity: 0, y: 24 })
+    let raf = 0
+    const check = () => {
+      raf = 0
+      const limit = window.innerHeight * 0.92
+      pending = pending.filter((t) => {
+        if (t.getBoundingClientRect().top > limit) return true
+        gsap.to(t, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: Number(t.dataset.d || 0) })
+        return false
       })
-    }, { threshold: 0.12 })
-    items.forEach((i) => io.observe(i))
-    return () => io.disconnect()
+      if (!pending.length) stop()
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check) }
+    const show = () => { gsap.killTweensOf(pending); gsap.set(pending, { opacity: 1, y: 0 }); pending = []; stop() }
+    const stop = () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      window.removeEventListener('beforeprint', show)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    window.addEventListener('beforeprint', show)
+    check()
+    return () => { stop(); if (raf) cancelAnimationFrame(raf) }
   }, [])
   return ref
 }
@@ -45,8 +62,8 @@ export function CountUp({ to, suffix = '', dur = 1400 }) {
 
 export function Eyebrow({ children, tone = 'heat' }) {
   return (
-    <div className={`label flex items-center gap-3 ${tone === 'heat' ? 'text-heat' : 'text-slate-500'}`}>
-      <span className="h-px w-8 bg-current" />{children}
+    <div className={`label flex items-center gap-3 ${tone === 'heat' ? 'text-heat' : 'text-slate-600'}`}>
+      <span className="h-px w-6 shrink-0 bg-current md:w-8" />{children}
     </div>
   )
 }
