@@ -32,6 +32,7 @@
     $('intro').textContent = c.intro
     $('count').textContent = plural(c.options.length, 'option') + ' to review'
     var grid = $('grid')
+    if (c.options.length === 1) grid.classList.add('one')
     if (c.options.length >= 3) grid.classList.add('three')
 
     c.options.forEach(function (o, i) {
@@ -48,6 +49,7 @@
       m.appendChild(top)
       m.appendChild(el('p', 'subtitle', o.subtitle))
       m.appendChild(el('p', 'notes', o.notes))
+      m.appendChild(el('span', 'btn dark cta', 'View full screen'))
       card.appendChild(t)
       card.appendChild(m)
       card.addEventListener('click', function () { location.hash = String(i + 1) })
@@ -61,7 +63,7 @@
       b.addEventListener('click', function () { location.hash = String(i + 1) })
       tabs.appendChild(b)
     })
-    if (c.options.length < 2) tabs.style.visibility = 'hidden'
+    if (c.options.length < 2) { tabs.hidden = true; $('viewer').classList.add('single') }
 
     function show() {
       var n = parseInt(location.hash.slice(1), 10)
@@ -76,6 +78,7 @@
       viewer.hidden = false
       document.body.classList.add('locked')
       if (frame.getAttribute('src') !== siteUrl(o.id)) frame.src = siteUrl(o.id)
+      $('current').textContent = o.title + (o.subtitle ? ' · ' + o.subtitle : '')
       Array.prototype.forEach.call(tabs.children, function (t, i) { t.setAttribute('aria-current', String(i === n - 1)) })
       tabs.children[n - 1].scrollIntoView({ block: 'nearest', inline: 'center' })
       document.title = o.title + ' · ' + c.name

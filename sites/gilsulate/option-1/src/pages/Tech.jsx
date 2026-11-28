@@ -86,7 +86,7 @@ export function CaseIndex() {
       <div className="reveal grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {CASE_STUDIES.map((c, i) => (
           <Link key={c.slug} to={`/tech/case-studies/${c.slug}`} className="group flex min-h-[220px] flex-col justify-between bg-ink p-7 transition-colors hover:bg-slate2">
-            <span className="label text-slate-500">0{i + 1}</span>
+            <span className="label text-slate-400">0{i + 1}</span>
             <div><h2 className="display text-2xl leading-tight group-hover:text-heat">{c.name}</h2><p className="label mt-3 text-heat">{c.type}</p></div>
           </Link>
         ))}
@@ -105,7 +105,7 @@ export function CaseDetail() {
       blocks={c.body ? [{ h: 'Overview', p: c.body }] : [{ h: 'Project brief', p: ['Full project details, specifications and results for this installation are available on request.'] }]}>
       {meta.length > 1 && (
         <dl className="reveal grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
-          {meta.map(([k, v]) => <div key={k} className="bg-slate2 p-5"><dt className="label text-slate-500">{k}</dt><dd className="display mt-2 text-lg">{v}</dd></div>)}
+          {meta.map(([k, v]) => <div key={k} className="bg-slate2 p-5"><dt className="label text-slate-400">{k}</dt><dd className="display mt-2 text-lg">{v}</dd></div>)}
         </dl>
       )}
       <Link to="/tech/case-studies" className="label reveal inline-block text-slate-300 hover:text-heat">← All case studies</Link>

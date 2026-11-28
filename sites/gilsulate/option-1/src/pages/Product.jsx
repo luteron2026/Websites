@@ -51,7 +51,7 @@ export function ProductWhat() {
         <dl className="border-t border-line">
           {SPECS.map(([k, v]) => (
             <div key={k} className="grid gap-1 border-b border-line py-4 sm:grid-cols-[200px_1fr] sm:gap-6">
-              <dt className="label pt-1 text-slate-500">{k}</dt>
+              <dt className="label pt-1 text-slate-400">{k}</dt>
               <dd className="leading-relaxed text-slate-200">{v}</dd>
             </div>
           ))}
